@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import Contacts from 'react-native-contacts';
+import { Actions } from 'react-native-router-flux';
 import Button from './Button';
 
 export class InviteFriends extends Component {
-  openContacts() {
-    Contacts.getAllWithoutPhotos((err, contacts) => {
-        if (err && err.type === 'permissionDenied') {
-            // x.x
-        } else {
-            console.log(contacts);
-        }
-    });
+  navigateToFriendsList() {
+    Actions.inviteFriendsList();
   }
 
   render() {
@@ -19,7 +13,7 @@ export class InviteFriends extends Component {
         <View style={styles.container}>
             <Text style={styles.text}>`Get your friends on Rayka`</Text>
             <Text style={styles.text}>`Looking for travel tips from friends? Make sure they join you!`</Text>
-            <Button onPress={this.openContacts}>Invite from Contacts</Button>
+            <Button onPress={this.navigateToFriendsList()}>Invite from Contacts</Button>
         </View>
     );
   }
@@ -28,7 +22,7 @@ export class InviteFriends extends Component {
 const styles = {
     container: {
         flex: 1,
-        height: 100
+        height: 50
     },
     text: {
         color: 'black',

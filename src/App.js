@@ -7,6 +7,7 @@ import { GoogleMap } from './components/GoogleMap';
 import { Login } from './components/Login';
 import { Friends } from './components/Friends';
 import { InviteFriends } from './components/InviteFriends';
+import { InviteFriendsList } from './components/InviteFriendsList';
 import { Notifications } from './components/Notifications';
 import { Settings } from './components/Settings';
 import { Help } from './components/Help';
@@ -26,6 +27,7 @@ class App extends Component {
             <Scene key="friends" component={Friends} title="Friends" />
             <Scene key="login" component={Login} title="Login" />
             <Scene key="inviteFriends" component={InviteFriends} title="Invite Friends" />
+            <Scene key="inviteFriendsList" component={InviteFriendsList} title="Invite Friends" />
             <Scene key="notifications" component={Notifications} title="Notifications" />
             <Scene key="settings" component={Settings} title="Settings" />
             <Scene key="help" component={Help} title="Help" />
