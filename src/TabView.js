@@ -60,7 +60,7 @@ const TabView = (props, context) => {
   const drawer = context.drawer;
   const routes = ds.cloneWithRows([
     {
-      routeCallback: () => { drawer.close(); Actions.googleMap(); },
+      routeCallback: () => { drawer.close(); Actions.home(); },
       name: 'Home',
       icon: 'home'
     },
@@ -75,8 +75,8 @@ const TabView = (props, context) => {
       icon: 'map'
     },
     {
-      routeCallback: () => { drawer.close(); Actions.testScreen(); },
-      name: 'Test Screen',
+      routeCallback: () => { drawer.close(); Actions.groups(); },
+      name: 'Groups',
       icon: 'gears'
     },
     {

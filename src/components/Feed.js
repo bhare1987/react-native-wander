@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { ListView, View, Text, Image, ScrollView } from 'react-native';
+import { ListView, View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 
-
-// Make a Component
 export class Feed extends Component {
 
   constructor(props) {
     super(props);
-    console.log(' THIS IS PROPS', props);
     this.state = {
       dataSource: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }),
       feed: new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 }),
@@ -28,10 +25,12 @@ export class Feed extends Component {
         <Image source={{ uri: feed.user.photo_url }} style={styles.photo} />
         <View style={styles.textContainer}>
           <Text style={styles.text}>
-            {`${feed.user.first_name} added ${feed.place.name}`}
+            <Text style={styles.bold}>{`${feed.user.first_name} ${feed.user.last_name}`}</Text>
+              {` added `}
+            <Text style={styles.bold}>{`${feed.place.name}`}</Text>
           </Text>
-          <Text style={styles.text}>
-            {`${feed.comment}`}
+          <Text style={styles.textComment}>
+            {feed.comment}
           </Text>
         </View>
       </View>
@@ -42,24 +41,27 @@ export class Feed extends Component {
     return (
       <ScrollView>
         <ListView
-         style={styles.container}
          dataSource={this.state.feed}
          renderRow={this.renderFeed}
+         renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
         />
       </ScrollView>
     );
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 4,
     flexDirection: 'row',
+    alignSelf: 'stretch',
+    marginLeft: 10,
+    height: 65
   },
   text: {
-    marginLeft: 8,
-    fontSize: 16,
+    marginLeft: 14,
+    fontSize: 14,
   },
   photo: {
     height: 40,
@@ -68,5 +70,17 @@ const styles = {
   },
   textContainer: {
     flexDirection: 'column'
+  },
+  bold: {
+    fontWeight: '600'
+  },
+  separator: {
+    flex: 1,
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: '#8E8E8E',
+  },
+  textComment: {
+    marginLeft: 14,
+    fontWeight: '100'
   }
-};
+});
